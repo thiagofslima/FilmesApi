@@ -61,7 +61,7 @@ public class FilmeController : ControllerBase
         if (filme == null) return NotFound();
 
         _mapper.Map(filmeDto, filme);
-        var resultado = _context.SaveChanges();
+        _context.SaveChanges();
         return NoContent();
     }
 
@@ -85,13 +85,13 @@ public class FilmeController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeletarFilme(int id)
+    public IActionResult DeletaFilme(int id)
     {
-        // FALTA CONFIRMAR
         var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
         if (filme == null) return NotFound();
 
         _context.Remove(filme);
+        _context.SaveChanges();
         return NoContent();
     }
 }
