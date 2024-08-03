@@ -30,9 +30,9 @@ public class EnderecoController : ControllerBase
     }
     
     [HttpGet]
-    public IEnumerable<ReadEnderecoDto> RecuperaEnderecos([FromQuery] int skip = 0, [FromQuery] int take = 50)
+    public IEnumerable<ReadEnderecoDto> RecuperaEnderecos()
     {
-        return _mapper.Map<List<ReadEnderecoDto>>(_context.Enderecos.Skip(skip).Take(take));
+        return _mapper.Map<List<ReadEnderecoDto>>(_context.Enderecos.ToList());
     }
 
     [HttpGet("{id}")]
